@@ -3,12 +3,17 @@ package main
 import (
 	"flag"
 	"fmt"
+	"funtemps/conv"
+	"funtemps/funfacts"
 )
 
 // Definerer flag-variablene i hoved-"scope"
 var fahr float64
+var cels float64
+var kelv float64
+var temp string
 var out string
-var funfacts string
+var funfact string
 
 // Bruker init (som anbefalt i dokumentasjonen) for å sikre at flagvariablene
 // er initialisert.
@@ -23,43 +28,48 @@ func init() {
 
 	// Definerer og initialiserer flagg-variablene
 	flag.Float64Var(&fahr, "F", 0.0, "temperatur i grader fahrenheit")
+	flag.Float64Var(&cels, "C", 0.0, "temperatur i grader celsius")
+	flag.Float64Var(&kelv, "K", 0.0, "temperatur i grader kelvin")
 	// Du må selv definere flag-variablene for "C" og "K"
+	flag.StringVar(&temp, "temp", "C", "bestemme hvilken temperatur som vises")
 	flag.StringVar(&out, "out", "C", "beregne temperatur i C - celsius, F - farhenheit, K- Kelvin")
-	flag.StringVar(&funfacts, "funfacts", "sun", "\"fun-facts\" om sun - Solen, luna - Månen og terra - Jorden")
+	flag.StringVar(&funfact, "funfacts", "sun", "\"fun-facts\" om sun - Solen, luna - Månen og terra - Jorden")
 	// Du må selv definere flag-variabelen for -t flagget, som bestemmer
 	// hvilken temperaturskala skal brukes når funfacts skal vises
 
 }
 
 func main() {
+	fmt.Println(conv.CelsiusToFahrenheit(20))
+	fmt.Println(funfacts.GetFunFacts("sun"))
 
 	flag.Parse()
 
-	/**
-	    Her må logikken for flaggene og kall til funksjoner fra conv og funfacts
-	    pakkene implementeres.
+	/*
+		    Her må logikken for flaggene og kall til funksjoner fra conv og funfacts
+		    pakkene implementeres.
 
-	    Det er anbefalt å sette opp en tabell med alle mulige kombinasjoner
-	    av flagg. flag-pakken har funksjoner som man kan bruke for å teste
-	    hvor mange flagg og argumenter er spesifisert på kommandolinje.
+		    Det er anbefalt å sette opp en tabell med alle mulige kombinasjoner
+		    av flagg. flag-pakken har funksjoner som man kan bruke for å teste
+		    hvor mange flagg og argumenter er spesifisert på kommandolinje.
 
-	        fmt.Println("len(flag.Args())", len(flag.Args()))
-			    fmt.Println("flag.NFlag()", flag.NFlag())
+		        fmt.Println("len(flag.Args())", len(flag.Args()))
+				    fmt.Println("flag.NFlag()", flag.NFlag())
 
-	    Enkelte kombinasjoner skal ikke være gyldige og da må kontrollstrukturer
-	    brukes for å utelukke ugyldige kombinasjoner:
-	    -F, -C, -K kan ikke brukes samtidig
-	    disse tre kan brukes med -out, men ikke med -funfacts
-	    -funfacts kan brukes kun med -t
-	    ...
-	    Jobb deg gjennom alle tilfellene. Vær obs på at det er en del sjekk
-	    implementert i flag-pakken og at den vil skrive ut "Usage" med
-	    beskrivelsene av flagg-variablene, som angitt i parameter fire til
-	    funksjonene Float64Var og StringVar
+		    Enkelte kombinasjoner skal ikke være gyldige og da må kontrollstrukturer
+		    brukes for å utelukke ugyldige kombinasjoner:
+		    -F, -C, -K kan ikke brukes samtidig
+		    disse tre kan brukes med -out, men ikke med -funfacts
+		    -funfacts kan brukes kun med -t
+		    ...
+		    Jobb deg gjennom alle tilfellene. Vær obs på at det er en del sjekk
+		    implementert i flag-pakken og at den vil skrive ut "Usage" med
+		    beskrivelsene av flagg-variablene, som angitt i parameter fire til
+		    funksjonene Float64Var og StringVar
 	*/
 
 	// Her er noen eksempler du kan bruke i den manuelle testingen
-	fmt.Println(fahr, out, funfacts)
+	fmt.Println(fahr, out, funfact)
 
 	fmt.Println("len(flag.Args())", len(flag.Args()))
 	fmt.Println("flag.NFlag()", flag.NFlag())
