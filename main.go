@@ -76,21 +76,21 @@ func main() {
 
 	if isFlagPassed("F") {
 		if out == "C" {
-			fmt.Printf("%.2f°F er %.2f°C", fahr, conv.FarhenheitToCelsius(fahr))
+			fmt.Printf("%g°F er %g°C", fahr, conv.FarhenheitToCelsius(fahr))
 		} else if out == "K" {
-			fmt.Printf("%.2f°F er %.2f°K", fahr, conv.FarhenheitToKelvin(fahr))
+			fmt.Printf("%g°F er %g°K", fahr, conv.FarhenheitToKelvin(fahr))
 		}
 	} else if isFlagPassed("C") {
 		if out == "F" {
-			fmt.Printf("%.2f°C er %.2f°F", cels, conv.CelsiusToFahrenheit(cels))
+			fmt.Printf("%g°C er %g°F", cels, conv.CelsiusToFahrenheit(cels))
 		} else if out == "K" {
-			fmt.Printf("%.2f°C er %.2f°K", cels, conv.CelsiusToKelvin(cels))
+			fmt.Printf("%g°C er %g°K", cels, conv.CelsiusToKelvin(cels))
 		}
 	} else if isFlagPassed("K") {
 		if out == "C" {
-			fmt.Printf("%.2f°K er %.2f°C", kelv, conv.KelvinToCelsius(kelv))
+			fmt.Printf("%g°K er %g°C", kelv, conv.KelvinToCelsius(kelv))
 		} else if out == "F" {
-			fmt.Printf("%.2f°K er %.2f°F", kelv, conv.KelvinToFahrenheit(kelv))
+			fmt.Printf("%g°K er %g°F", kelv, conv.KelvinToFahrenheit(kelv))
 		}
 	}
 }
