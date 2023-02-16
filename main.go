@@ -4,16 +4,15 @@ import (
 	"flag"
 	"fmt"
 	"funtemps/conv"
-	"funtemps/funfacts"
 )
 
 // Definerer flag-variablene i hoved-"scope"
 var fahr float64
 var cels float64
 var kelv float64
-var temp string
 var out string
 var funfact string
+var temp string
 
 // Bruker init (som anbefalt i dokumentasjonen) for å sikre at flagvariablene
 // er initialisert.
@@ -31,18 +30,15 @@ func init() {
 	flag.Float64Var(&cels, "C", 0.0, "temperatur i grader celsius")
 	flag.Float64Var(&kelv, "K", 0.0, "temperatur i grader kelvin")
 	// Du må selv definere flag-variablene for "C" og "K"
-	flag.StringVar(&temp, "temp", "C", "bestemme hvilken temperatur som vises")
 	flag.StringVar(&out, "out", "C", "beregne temperatur i C - celsius, F - farhenheit, K- Kelvin")
 	flag.StringVar(&funfact, "funfacts", "sun", "\"fun-facts\" om sun - Solen, luna - Månen og terra - Jorden")
+	flag.StringVar(&temp, "temp", "C", "bestemme hvilken temperatur som vises")
 	// Du må selv definere flag-variabelen for -t flagget, som bestemmer
 	// hvilken temperaturskala skal brukes når funfacts skal vises
 
 }
 
 func main() {
-	fmt.Println(conv.CelsiusToFahrenheit(20))
-	fmt.Println(funfacts.GetFunFacts("sun"))
-
 	flag.Parse()
 
 	/*
@@ -69,20 +65,34 @@ func main() {
 	*/
 
 	// Her er noen eksempler du kan bruke i den manuelle testingen
-	fmt.Println(fahr, out, funfact)
+	/*
+		fmt.Println(fahr, out, funfact)
 
-	fmt.Println("len(flag.Args())", len(flag.Args()))
-	fmt.Println("flag.NFlag()", flag.NFlag())
+		fmt.Println("len(flag.Args())", len(flag.Args()))
+		fmt.Println("flag.NFlag()", flag.NFlag())
 
-	fmt.Println(isFlagPassed("out"))
+		fmt.Println(isFlagPassed("out"))
+	*/
 
-	// Eksempel på enkel logikk
-	if out == "C" && isFlagPassed("F") {
-		// Kalle opp funksjonen FahrenheitToCelsius(fahr), som da
-		// skal returnere °C
-		fmt.Println("0°F er -17.78°C")
+	if isFlagPassed("F") {
+		if out == "C" {
+			fmt.Printf("%.2f°F er %.2f°C", fahr, conv.FarhenheitToCelsius(fahr))
+		} else if out == "K" {
+			fmt.Printf("%.2f°F er %.2f°K", fahr, conv.FarhenheitToKelvin(fahr))
+		}
+	} else if isFlagPassed("C") {
+		if out == "F" {
+			fmt.Printf("%.2f°C er %.2f°F", cels, conv.CelsiusToFahrenheit(cels))
+		} else if out == "K" {
+			fmt.Printf("%.2f°C er %.2f°K", cels, conv.CelsiusToKelvin(cels))
+		}
+	} else if isFlagPassed("K") {
+		if out == "C" {
+			fmt.Printf("%.2f°K er %.2f°C", kelv, conv.KelvinToCelsius(kelv))
+		} else if out == "F" {
+			fmt.Printf("%.2f°K er %.2f°F", kelv, conv.KelvinToFahrenheit(kelv))
+		}
 	}
-
 }
 
 // Funksjonen sjekker om flagget er spesifisert på kommandolinje
