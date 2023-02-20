@@ -34,26 +34,26 @@ func main() {
 	if isFlagPassed("out") { // LOGIKK FOR KONVERTERING AV GRADER
 		if isFlagPassed("F") { // Input
 			if out == "C" {
-				fmt.Printf("%g°F er %g°C\n", fahr, conv.FarhenheitToCelsius(fahr))
-				// %g viser flyttall, med kun "nødvendige" desimaler (3.00 blir 3, 3.10 blir 3.1, 3.14 blir 3.14)
+				fmt.Printf("%s°F er %s°C\n", conv.FloatRound(fahr), conv.FarhenheitToCelsius(fahr))
+				// %s viser Strings, som har vært gjennom funksjonen FloatRound i conv-pakken
 			} else if out == "K" {
-				fmt.Printf("%g°F er %g°K\n", fahr, conv.FarhenheitToKelvin(fahr))
+				fmt.Printf("%s°F er %s°K\n", conv.FloatRound(fahr), conv.FarhenheitToKelvin(fahr))
 			} else {
 				fmt.Println("Flag out has to be C or K")
 			}
 		} else if isFlagPassed("C") {
 			if out == "F" {
-				fmt.Printf("%g°C er %g°F\n", cels, conv.CelsiusToFahrenheit(cels))
+				fmt.Printf("%s°C er %s°F\n", conv.FloatRound(cels), conv.CelsiusToFahrenheit(cels))
 			} else if out == "K" {
-				fmt.Printf("%g°C er %g°K\n", cels, conv.CelsiusToKelvin(cels))
+				fmt.Printf("%s°C er %s°K\n", conv.FloatRound(cels), conv.CelsiusToKelvin(cels))
 			} else {
 				fmt.Println("Flag out has to be F or K")
 			}
 		} else if isFlagPassed("K") {
 			if out == "C" {
-				fmt.Printf("%g°K er %g°C\n", kelv, conv.KelvinToCelsius(kelv))
+				fmt.Printf("%s°K er %s°C\n", conv.FloatRound(kelv), conv.KelvinToCelsius(kelv))
 			} else if out == "F" {
-				fmt.Printf("%g°K er %g°F\n", kelv, conv.KelvinToFahrenheit(kelv))
+				fmt.Printf("%s°K er %s°F\n", conv.FloatRound(kelv), conv.KelvinToFahrenheit(kelv))
 			} else {
 				fmt.Println("Flag out has to be C or F")
 			}
@@ -62,39 +62,39 @@ func main() {
 		if temp == "C" {
 			if funfact == "sun" {
 				// funfact[0]: "Temperatur i Solens kjerne", funfact[1]: "Temperatur på ytre lag av Solen"
-				fmt.Printf("%v er %g°C\n%v er %g°C", funfacts.GetFunFacts(funfact)[0], 15000000.0, funfacts.GetFunFacts(funfact)[1], conv.KelvinToCelsius(5778))
-				// %v viser samme verdi som inputverdi (i dette tilfellet: String)
+				fmt.Printf("%s er %s°C\n%s er %s°C", funfacts.GetFunFacts(funfact)[0], conv.FloatRound(15000000.0), funfacts.GetFunFacts(funfact)[1], conv.KelvinToCelsius(5778))
+				// %s viser samme verdi som inputverdi (i dette tilfellet: String)
 				// \n hopper ned en linje i terminalen og separerer dermed output-setningene
 				// funfacts.GetFunFacts(funfact) henter et array/slice med funfacts. En enkelt funfact (en String) velges med index (f.eks. [0]) bak funksjonskallet
-				// Verdien til %g blir puttet enten puttet inn direkte som flyttall (15000000.0), eller gjennom conv-pakken (conv.KelvinToCelsius(5778))
+				// Verdien til %s blir puttet inn gjennom conv-pakken (conv.FloatRound(15000000.0) eller conv.KelvinToCelsius(5778))
 			} else if funfact == "luna" {
 				// funfact[0]: "Temperatur på Månens overflate om natten", funfact[1]: "Temperatur på Månens overflate om dagen"
-				fmt.Printf("%v er %g°C\n%v er %g°C", funfacts.GetFunFacts(funfact)[0], -183.0, funfacts.GetFunFacts(funfact)[1], 106.0)
+				fmt.Printf("%s er %s°C\n%s er %s°C", funfacts.GetFunFacts(funfact)[0], conv.FloatRound(-183.0), funfacts.GetFunFacts(funfact)[1], conv.FloatRound(106.0))
 			} else if funfact == "terra" {
 				// funfact[0]: "Høyeste temperatur målt på Jordens overflate", funfact[1]: "Laveste temperatur målt på Jordens overflate", funfact[2]: "Temperatur i Jordens indre kjerne"
-				fmt.Printf("%v er %g°C\n%v er %g°C\n%v er %g°C", funfacts.GetFunFacts(funfact)[0], 56.7, funfacts.GetFunFacts(funfact)[1], -89.4, funfacts.GetFunFacts(funfact)[2], conv.KelvinToCelsius(9392))
+				fmt.Printf("%s er %s°C\n%s er %s°C\n%s er %s°C", funfacts.GetFunFacts(funfact)[0], conv.FloatRound(56.7), funfacts.GetFunFacts(funfact)[1], conv.FloatRound(-89.4), funfacts.GetFunFacts(funfact)[2], conv.KelvinToCelsius(9392))
 			} else {
-				fmt.Printf("%v is not defined, try sun, luna or terra", funfact)
+				fmt.Printf("%s is not defined, try sun, luna or terra", funfact)
 			}
 		} else if temp == "F" {
 			if funfact == "sun" {
-				fmt.Printf("%v er %g°F\n%v er %g°F", funfacts.GetFunFacts(funfact)[0], conv.CelsiusToFahrenheit(15000000), funfacts.GetFunFacts(funfact)[1], conv.KelvinToFahrenheit(5778))
+				fmt.Printf("%s er %s°F\n%s er %s°F", funfacts.GetFunFacts(funfact)[0], conv.CelsiusToFahrenheit(15000000), funfacts.GetFunFacts(funfact)[1], conv.KelvinToFahrenheit(5778))
 			} else if funfact == "luna" {
-				fmt.Printf("%v er %g°F\n%v er %g°F", funfacts.GetFunFacts(funfact)[0], conv.CelsiusToFahrenheit(-183), funfacts.GetFunFacts(funfact)[1], conv.CelsiusToFahrenheit(106))
+				fmt.Printf("%s er %s°F\n%s er %s°F", funfacts.GetFunFacts(funfact)[0], conv.CelsiusToFahrenheit(-183), funfacts.GetFunFacts(funfact)[1], conv.CelsiusToFahrenheit(106))
 			} else if funfact == "terra" {
-				fmt.Printf("%v er %g°F\n%v er %g°F\n%v er %g°F", funfacts.GetFunFacts(funfact)[0], 134.0, funfacts.GetFunFacts(funfact)[1], conv.CelsiusToFahrenheit(-89.4), funfacts.GetFunFacts(funfact)[2], conv.KelvinToFahrenheit(9392))
+				fmt.Printf("%s er %s°F\n%s er %s°F\n%s er %s°F", funfacts.GetFunFacts(funfact)[0], conv.FloatRound(134.0), funfacts.GetFunFacts(funfact)[1], conv.CelsiusToFahrenheit(-89.4), funfacts.GetFunFacts(funfact)[2], conv.KelvinToFahrenheit(9392))
 			} else {
-				fmt.Printf("%v is not defined, try sun, luna or terra", funfact)
+				fmt.Printf("%s is not defined, try sun, luna or terra", funfact)
 			}
 		} else if temp == "K" {
 			if funfact == "sun" {
-				fmt.Printf("%v er %g°K\n%v er %g°K", funfacts.GetFunFacts(funfact)[0], conv.CelsiusToKelvin(15000000), funfacts.GetFunFacts(funfact)[1], 5778.0)
+				fmt.Printf("%s er %s°K\n%s er %s°K", funfacts.GetFunFacts(funfact)[0], conv.CelsiusToKelvin(15000000), funfacts.GetFunFacts(funfact)[1], conv.FloatRound(5778.0))
 			} else if funfact == "luna" {
-				fmt.Printf("%v er %g°K\n%v er %g°K", funfacts.GetFunFacts(funfact)[0], conv.CelsiusToKelvin(-183), funfacts.GetFunFacts(funfact)[1], conv.CelsiusToKelvin(106))
+				fmt.Printf("%s er %s°K\n%s er %s°K", funfacts.GetFunFacts(funfact)[0], conv.CelsiusToKelvin(-183), funfacts.GetFunFacts(funfact)[1], conv.CelsiusToKelvin(106))
 			} else if funfact == "terra" {
-				fmt.Printf("%v er %g°K\n%v er %g°K\n%v er %g°K", funfacts.GetFunFacts(funfact)[0], 329.82, funfacts.GetFunFacts(funfact)[1], conv.CelsiusToKelvin(-89.4), funfacts.GetFunFacts(funfact)[2], 9392.0)
+				fmt.Printf("%s er %s°K\n%s er %s°K\n%s er %s°K", funfacts.GetFunFacts(funfact)[0], conv.FloatRound(329.82), funfacts.GetFunFacts(funfact)[1], conv.CelsiusToKelvin(-89.4), funfacts.GetFunFacts(funfact)[2], conv.FloatRound(9392.0))
 			} else {
-				fmt.Printf("%v is not defined, try sun, luna or terra", funfact)
+				fmt.Printf("%s is not defined, try sun, luna or terra", funfact)
 			}
 		} else {
 			fmt.Println("Flag temp has to be C, F or K")
