@@ -124,3 +124,5 @@ func TestKelvinToCelsius(t *testing.T) {
 		}
 	}
 }
+
+// ALL TESTS PASSED

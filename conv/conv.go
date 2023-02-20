@@ -4,31 +4,18 @@ import (
 	"math"
 )
 
-/*
-I denne pakken skal alle konverteringfunksjonene
-implementeres. Bruk engelsk.
-
-	FarhenheitToCelsius
-	CelsiusToFahrenheit
-	KelvinToFarhenheit
-	...
-*/
+// En funskjon som runder flyttall med en ubestemt mengde desimaler til et flyttall med to desimaler
 func FloatRound(value float64) float64 {
 	return math.Round(value*100) / 100
 }
 
-// Konverterer Farhenheit til Celsius
+// Konverteringsfunksjoner:
+
 func FarhenheitToCelsius(fahrenheit float64) float64 {
-	// Her skal du implementere funksjonen
-	// Du skal ikke formattere float64 i denne funksjonen
-	// Gjør formattering i main.go med fmt.Printf eller
-	// lignende
-	celsius := (fahrenheit - 32) * (5.0 / 9)
-	return FloatRound(celsius) // Skal bli 56.67
+	celsius := (fahrenheit - 32) * (5.0 / 9.0)
+	return FloatRound(celsius)
 }
 
-// De andre konverteringsfunksjonene implementere her
-// ...
 func FarhenheitToKelvin(fahrenheit float64) float64 {
 	kelvin := (fahrenheit-32)*(5.0/9) + 273.15
 	return FloatRound(kelvin)

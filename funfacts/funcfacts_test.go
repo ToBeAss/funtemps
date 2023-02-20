@@ -22,6 +22,8 @@ func TestGetFunFacts(t *testing.T) {
 
 	tests := []test{
 		{input: "sun", want: []string{"Temperatur i Solens kjerne", "Temperatur på ytre lag av Solen"}},
+		{input: "luna", want: []string{"Temperatur på Månens overflate om natten", "Temperatur på Månens overflate om dagen"}},
+		{input: "terra", want: []string{"Høyeste temperatur målt på Jordens overflate", "Laveste temperatur målt på Jordens overflate", "Temperatur i Jordens indre kjerne"}},
 	}
 
 	for _, tc := range tests {
@@ -32,3 +34,5 @@ func TestGetFunFacts(t *testing.T) {
 	}
 
 }
+
+// ALL TESTS PASSED
