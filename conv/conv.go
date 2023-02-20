@@ -6,10 +6,13 @@ import (
 )
 
 // En funskjon som runder flyttall med en ubestemt mengde desimaler til et flyttall med to desimaler
-/*func FloatRound(value float64) float64 {
-	return math.Round(value*100) / 100
-}*/
+/*
+	func FloatRound(value float64) float64 {
+		return math.Round(value*100) / 100
+	}
+*/
 
+// Lignende funksjon som den over, men her blir unødvendige nuller (0) tatt bort
 func FloatRound(value float64) string {
 	str := fmt.Sprintf("%.2f", value)
 	return strings.TrimRight(strings.TrimRight(str, "0"), ".")
