@@ -1,1 +1,4 @@
 # funtemps
+Jeg synes conv-pakken og funfacts-pakken var ganske greie å få til i seg selv. Det ble litt mer utfordrende å kalle de eksterne funksjonene fra main.go, men det gikk greit når jeg hadde importert pakkene. Logikken (if, else if, og else) var gøy, men man må holde tunga rett i munnen. Jeg brukte en del tid på å forstå hvordan man brukte flagg i terminalen, men når jeg skjønte det var det ganske enkelt. Det mest utfordrende var å konvertere flyt-tallene på riktig måte. Jeg fant en løsning på å begrense antall desimaler, men klarte ikke å skille tusentall med mellomrom. Jobber fremdeles med andre løsninger på formatering, så det kommer muligens en update på GitHub.
+
+Jeg synes det har vært gøy og passelig utfordrende å jobbe med funtemps oppgaven. Med en ekstra uke, følte jeg at vi hadde riktig mengde tid til å fullføre oppgaven.
