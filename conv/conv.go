@@ -1,8 +1,8 @@
 package conv
 
 import (
-	"fmt"
-	"strings"
+	/*"fmt"
+	"strings"*/
 )
 
 // En funskjon som runder flyttall med en ubestemt mengde desimaler til et flyttall med to desimaler
